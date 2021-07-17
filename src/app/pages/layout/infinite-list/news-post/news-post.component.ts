@@ -8,5 +8,5 @@ import { NewsPost } from '../../news.service';
 })
 export class NewsPostComponent {
 
-  @Input() post: NewsPost;
+  @Input() post: NewsPost; 
 }

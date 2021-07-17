@@ -5,7 +5,7 @@ import {
   NbCardModule,
   NbCheckboxModule,
   NbDatepickerModule, NbIconModule,
-  NbInputModule,
+  NbInputModule, 
   NbRadioModule,
   NbSelectModule,
   NbUserModule,

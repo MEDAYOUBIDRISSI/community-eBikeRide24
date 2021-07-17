@@ -1,0 +1,105 @@
+<nb-card accent="info" *ngIf="post.typePost=='PostAnnonce'">
+    <nb-card-body>
+
+    <nb-user size="large"
+            [picture]="post.user.imgProfile"
+             [name]="post.user.nom"
+             [title]="post.user.email"
+             shape="semi-round">
+    </nb-user>
+
+  </nb-card-body>
+    <nb-card-body>
+      {{post.post}}.
+      <br>
+        <img *ngFor="let photo of post.Images" [src]="photo" class="rounded float-left" alt="...">
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button type="button" class="btn btn-outline-info">Join</button>
+          <button type="button" (click)="toggle2()" class="btn btn-outline-info">Joins</button>
+          <button type="button" (click)="toggle()" class="btn btn-outline-info">
+            <nb-icon icon="chatbubble-outline" status="info"></nb-icon>
+            Comments
+          </button>
+        </div>
+      <nb-accordion>
+          <nb-accordion-item #item>
+            <nb-accordion-item-body>
+              <nb-card size="small">
+                  <nb-list>
+                    <nb-list-item *ngFor="let user of users">
+                      <nb-user [name]="user.name" [title]="user.title">
+                      </nb-user>
+                    </nb-list-item>
+                  </nb-list>
+              </nb-card>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+          <nb-accordion-item #item2>
+              <nb-accordion-item-body>
+                  <nb-user *ngFor="let user of post.affiliateDrivers" 
+                      [picture]="user.imgProfile"
+                      size="large"
+                      [name]="user.nom">
+                  </nb-user>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion>
+  </nb-card-footer>
+  </nb-card>
+  
+  <nb-card accent="danger" *ngIf="post.typePost=='PostSample'">
+    <nb-card-body>
+
+    <nb-user size="large"
+            [picture]="post.user.imgProfile"
+             [name]="post.user.nom"
+             [title]="post.user.email"
+             shape="semi-round">
+    </nb-user>
+
+  </nb-card-body>
+    <nb-card-body>
+        {{post.post}}.
+        <br>
+        <img *ngFor="let photo of post.Images" [src]="photo" class="rounded float-left" alt="...">
+    </nb-card-body>
+    <nb-card-footer>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-danger">
+                <nb-icon icon="heart-outline" status="primary"></nb-icon>
+                <nb-icon icon="heart-outline" status="danger"></nb-icon>
+                J'aime
+            </button>
+            <button type="button" (click)="toggle2()" class="btn btn-outline-danger">Intéressé</button>
+            <button type="button" (click)="toggle()" class="btn btn-outline-danger">
+                <nb-icon icon="chatbubble-outline" status="danger"></nb-icon>
+                Comments
+            </button>
+          </div>
+        <nb-accordion>
+            <nb-accordion-item #item>
+              <nb-accordion-item-body>
+                <nb-card size="small">
+                    <nb-list>
+                      <nb-list-item *ngFor="let user of users">
+                        <nb-user [name]="user.name" [title]="user.title">
+                        </nb-user>
+                      </nb-list-item>
+                    </nb-list>
+                </nb-card>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+            <nb-accordion-item #item2>
+                <nb-accordion-item-body>
+                    <nb-user *ngFor="let user of post.affiliateDrivers" 
+                        [picture]="user.imgProfile"
+                        size="large"
+                        [name]="user.nom">
+                    </nb-user>
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+          </nb-accordion>
+    </nb-card-footer>
+  </nb-card>

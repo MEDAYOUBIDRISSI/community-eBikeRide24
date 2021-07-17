@@ -19,7 +19,7 @@ export class NewsService {
 
   load(page: number, pageSize: number): Observable<NewsPost[]> {
     const startIndex = ((page - 1) % TOTAL_PAGES) * pageSize;
-
+    console.log("duga duga")
     return this.http
       .get<NewsPost[]>('assets/data/news.json')
       .pipe(

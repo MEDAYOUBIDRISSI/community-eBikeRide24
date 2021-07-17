@@ -1,0 +1,19 @@
+<nb-card class="list-card">
+    <nb-card-header>Sponsorisé</nb-card-header>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item *ngFor="let fruit of users">
+          {{ fruit.name }}
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+</nb-card>
+<nb-card class="list-card" size="small">
+    <nb-card-header>Contacts</nb-card-header>
+    <nb-list>
+        <nb-list-item *ngFor="let user of users">
+        <nb-user [name]="user.name" [title]="user.title" [picture]="user.picture">
+        </nb-user>
+        </nb-list-item>
+    </nb-list>
+</nb-card>

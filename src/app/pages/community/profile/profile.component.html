@@ -1,0 +1,123 @@
+<div class="container">
+  <header>
+    
+  </header>
+  <div>
+    <div class="row">
+      <div class="left col-lg-4">
+        <div class="photo-left">
+          <img class="photo" [src]="User.imgProfile"/>
+        </div>
+        <h4 class="name">{{User.nom}} {{User.prenom}}</h4>
+        <p class="info">UI/UX Designer</p>
+        <p class="info">{{User.email}}</p>
+        <div class="stats row">
+          <nb-card style="width: 320px;">
+            <nb-card-body>
+              <nb-tabset>
+                <nb-tab class="stat" tabTitle="Followers">
+                  <p class="number-stat"><strong>3,619</strong> Member</p>
+                </nb-tab>
+                <nb-tab class="stat" tabTitle="Following">
+                  <p class="number-stat"><strong>42</strong> Member</p>
+                </nb-tab>
+              </nb-tabset>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+      <div class="right col-lg-8">
+        <nb-card>
+          <nb-card-body class="cardFolowing">
+            <nb-tabset>
+              <nb-tab tabTitle="Galeries"
+                      badgeText="99+"
+                      badgeStatus="danger">
+                      <div class="row gallery">
+                        <div class="col-md-4">
+                           <img src="https://images.pexels.com/photos/1036371/pexels-photo-1036371.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                        </div>
+                        <div class="col-md-4">
+                          <img src="https://images.pexels.com/photos/861034/pexels-photo-861034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                        </div>
+                        <div class="col-md-4">
+                           <img src="https://images.pexels.com/photos/113338/pexels-photo-113338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                        </div>
+                        <div class="col-md-4">
+                           <img src="https://images.pexels.com/photos/5049/forest-trees-fog-foggy.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                        </div>
+                        <div class="col-md-4">
+                          <img src="https://images.pexels.com/photos/428431/pexels-photo-428431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                        </div>
+                        <div class="col-md-4">
+                          <img src="https://images.pexels.com/photos/50859/pexels-photo-50859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                        </div>
+                      </div>
+              </nb-tab>
+              <nb-tab tabTitle="Update Profile">
+                <article class="card-body">
+                  <form>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Nom</label>
+                                
+                                <input type="text" name="nom"  [(ngModel)] = "User.nom" class="form-control" placeholder="Nom">
+                            </div> 
+                            <div class="col form-group">
+                                <label>Prenom</label>
+                                <input type="text" [(ngModel)] = "User.prenom" name="prenom" class="form-control" placeholder="Prenom">
+                            </div> 
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>CNE</label>
+                                <input type="text" [(ngModel)] = "User.cne" name="cne" class="form-control" placeholder="CNE: EE854712">
+                            </div> 
+                            <div class="col form-group">
+                                <label>Tel</label>
+                                <input type="text" [(ngModel)] = "User.tel" name="tel" class="form-control" placeholder="Telephone: +212606988480">
+                            </div> 
+                            <div class="col form-group">
+                                <label>Date Naissance</label>
+                                <input type="date" [(ngModel)] = "User.dateNaissance" name="dateNaissance" class="form-control">
+                            </div> 
+                        </div>
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Adresse</label>
+                                <textarea class="form-control" [(ngModel)] = "User.adresse" name="adresse"></textarea>
+                            </div> 
+                        </div> 
+                        <div class="form-row">
+                            <div class="form-group col-md-7">
+                                <article class="box mb-4">
+                                    <h6>Choiser l'image</h6>
+                                    <input type="file" (change)="selectFiles($event)" >
+                                </article>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <article class="box mb-4">
+                                    <div class="icon">
+                                        <img class="rounded-circle img-sm border" [src]="User.imgProfile" style="margin-right: 10px;width: 100px;height: 100px;">
+                                        <a (click)="delete_img()" class="btn btn-light"> <i class="text-danger fa fa-trash"></i> </a>
+                                    </div>
+                                    
+                                </article>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" (click)="updateProfile()"> Update </button>
+                        </div>         
+                      </form>
+                  </article>
+              </nb-tab>
+              <nb-tab tabTitle="Posts">
+                <p>List of <strong>Posts</strong>.</p>
+              </nb-tab>
+            </nb-tabset>
+        
+          </nb-card-body>
+        </nb-card>
+      </div>
+  </div>
+</div>

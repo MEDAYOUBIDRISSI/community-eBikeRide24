@@ -20,10 +20,18 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import {FormsModule} from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { IndexComponent } from './pages/community/index/index.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,

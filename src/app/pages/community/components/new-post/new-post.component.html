@@ -1,0 +1,46 @@
+<nb-card>
+  <nb-card-body>
+    <nb-tabset>
+      <nb-tab tabTitle="Post" tabIcon="person-outline" responsive>
+        <nb-card class="inline-form-card"> 
+            <nb-card-body>
+              <form>
+                <div class="form-group">
+                    <textarea name="post" [(ngModel)] = "postSample.post" class="input-full-width size-medium status-basic shape-round nb-transition" nbInput placeholder="Message"></textarea>
+                  </div>
+                  <button (click)="savePostSample()" class="status-success appearance-filled size-medium shape-rectangle nb-transition ButtonSend" type="submit" nbButton status="success">Send</button>
+              </form>
+            </nb-card-body>
+        </nb-card>
+      </nb-tab>
+      <nb-tab tabTitle="Annonce" tabIcon="bell-outline" responsive>
+        <nb-card>
+          <nb-card-body class="example-items-col">
+            <input name="titlePost" [(ngModel)] = "postAnnonce.titlePost"  type="text" nbInput fullWidth placeholder="Titre" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille">
+            <div class="full-name-inputs row">
+              <div class="col-md-6">
+                <input name="from" [(ngModel)] = "postAnnonce.from"  type="text" nbInput fullWidth placeholder="From" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille">
+              </div>
+              <div class="col-md-6">
+                <input name="to" [(ngModel)] = "postAnnonce.to"  type="text" nbInput fullWidth placeholder="To" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille">
+              </div>
+              <div class="col-md-12">
+                  <input name="dateTripe" [(ngModel)] = "postAnnonce.dateTripe"  type="datetime-local" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille" nbInput placeholder="Pick Date">
+              </div>
+              <div class="col-md-12">
+                <textarea name="post" [(ngModel)] = "postAnnonce.post" class="input-full-width size-medium status-basic shape-round nb-transition margineTaille" nbInput placeholder="Message"></textarea>
+              </div>
+              <div class="col-md-4">
+                  <button (click)="savePostAnnonce()" class="status-success appearance-filled size-medium shape-rectangle nb-transition margineTaille ButtonSend" type="submit" nbButton status="success">Send</button>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </nb-tab>
+      <nb-tab tabTitle="Aide" tabIcon="email-outline" responsive>
+        <p>List of <strong>transactions</strong>.</p>
+      </nb-tab>
+    </nb-tabset>
+
+  </nb-card-body>
+</nb-card>
