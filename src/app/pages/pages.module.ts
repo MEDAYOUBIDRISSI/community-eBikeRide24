@@ -26,6 +26,7 @@ import { PostsComponent } from './community/components/posts/posts.component';
 import { ProfileComponent } from './community/profile/profile.component';
 import { NewsPostsComponent } from './community/components/posts/news-posts/news-posts.component';
 import { NewsPostsPlaceholderComponent } from './community/components/posts/news-posts-placeholder/news-posts-placeholder.component';
+import { MapRoutingComponent } from './community/components/maps-leaflet/map-routing/map-routing.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { NewsPostsPlaceholderComponent } from './community/components/posts/news
     PostsComponent,
     ProfileComponent,
     NewsPostsComponent,
-    NewsPostsPlaceholderComponent
+    NewsPostsPlaceholderComponent,
+    MapRoutingComponent
   ],
 })
 export class PagesModule {

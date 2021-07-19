@@ -8,6 +8,7 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 ////////////////////////////
 import { IndexComponent } from './community/index/index.component';
 import { ProfileComponent } from './community/profile/profile.component';
+import { MapRoutingComponent } from './community/components/maps-leaflet/map-routing/map-routing.component';
 
 const routes: Routes = [{
   path: '',
@@ -28,6 +29,10 @@ const routes: Routes = [{
     {
       path: 'profile',
       component: ProfileComponent,
+    },
+    {
+      path: 'mappage',
+      component: MapRoutingComponent,
     },
     {
       path: 'layout',

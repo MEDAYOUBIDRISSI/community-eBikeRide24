@@ -9,7 +9,9 @@ import { Component } from '@angular/core';
         <ngx-header></ngx-header>
       </nb-layout-header>
 
-      
+      <nb-sidebar class="menu-sidebar" tag="menu-sidebar " responsive>
+        <ng-content select="nb-menu"></ng-content>
+      </nb-sidebar>
 
       <nb-layout-column>
         <ng-content select="router-outlet"></ng-content>
@@ -21,8 +23,4 @@ import { Component } from '@angular/core';
     </nb-layout>
   `,
 })
-export class OneColumnLayoutComponent {
-  // <nb-sidebar class="menu-sidebar" tag="menu-sidebar " responsive>
-  //       <ng-content select="nb-menu"></ng-content>
-  //     </nb-sidebar>
-}
+export class OneColumnLayoutComponent {}
