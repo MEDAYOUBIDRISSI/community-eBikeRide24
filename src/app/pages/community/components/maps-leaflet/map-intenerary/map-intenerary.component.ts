@@ -1,25 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
-import { Trip } from "./trip.class"
 declare const L: any;
 
 @Component({
-  selector: 'ngx-map-routing',
-  templateUrl: './map-routing.component.html',
-  styleUrls: ['./map-routing.component.scss']
+  selector: 'ngx-map-intenerary',
+  templateUrl: './map-intenerary.component.html',
+  styleUrls: ['./map-intenerary.component.scss']
 })
-export class MapRoutingComponent implements OnInit {
+export class MapInteneraryComponent implements OnInit {
 
-  constructor(private dialogRef: NbDialogRef<MapRoutingComponent>) {
+  constructor() {
   }
-  ourTripe:Trip
   lat_Start:any
   long_Start:any
   lat_End:any
   long_End:any
-  close() {
-    this.dialogRef.close("goode");
-  }
 
   ngOnInit() {
     if (!navigator.geolocation) {
@@ -64,7 +58,7 @@ export class MapRoutingComponent implements OnInit {
 
       //  const coords = position.coords;
       const latLong = [31.58, -8.04];
-      const latLongEnd = [31.57, -8.03];
+      const latLongEnd = [30.57, -8.09];
       console.log(
         `lat: ${31.58}, lon: ${-8.04}`
       );
@@ -95,8 +89,8 @@ export class MapRoutingComponent implements OnInit {
         popupAnchor: [0, -29]
       });
 
-      let marker = L.marker(latLong,{draggable:true,icon: custom_icon}).addTo(mymap);
-      let marker_end = L.marker(latLongEnd,{draggable:true,icon: custom_icon_end}).addTo(mymap);
+      let marker = L.marker(latLong,{draggable:false,icon: custom_icon}).addTo(mymap);
+      let marker_end = L.marker(latLongEnd,{draggable:false,icon: custom_icon_end}).addTo(mymap);
 
       marker_end.bindPopup('<b>Hi End From Here</b>').openPopup();
       marker.bindPopup('<b>Hi Start From Here</b>').openPopup();
@@ -114,16 +108,28 @@ export class MapRoutingComponent implements OnInit {
 
         marker.on('dragend', function(event) {
           var latlng = event.target.getLatLng();
-          localStorage.setItem("startTripeLat",latlng.lat);
-          localStorage.setItem("startTripeLng",latlng.lng);
-          console.log(localStorage.getItem("startTripeLat"),localStorage.getItem("startTripeLng"))
+          console.log(latlng.lat,localStorage.latlng.lng)
         });
         marker_end.on('dragend', function(event) {
           var latlng = event.target.getLatLng();
-          localStorage.setItem("endTripeLat",latlng.lat);
-          localStorage.setItem("endTripeLng",latlng.lng);
-          console.log(localStorage.getItem("endTripeLat"),localStorage.getItem("endTripeLng"))
+          console.log(latlng.lat,localStorage.latlng.lng)
         });
+        
+        var latlngs = Array();
+
+        //Get latlng from first marker
+        latlngs.push(marker.getLatLng());
+
+        //Get latlng from first marker
+        latlngs.push(marker_end.getLatLng());
+
+        //You can just keep adding markers
+
+        //From documentation http://leafletjs.com/reference.html#polyline
+        // create a red polyline from an arrays of LatLng points
+        var polyline = L.polyline(latlngs, {color: 'grey'}).addTo(mymap);
+
+        mymap.fitBounds(polyline.getBounds());
     
     this.watchPosition();
   }
@@ -150,4 +156,5 @@ export class MapRoutingComponent implements OnInit {
       }
     );
   }
+
 }

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { PostServiceService,NewsPost ,User} from '../posts/post-service.service';
+import { NbDialogService } from '@nebular/theme';
+import { MapRoutingComponent } from '../maps-leaflet/map-routing/map-routing.component';
+import { Trip } from '../maps-leaflet/map-routing/trip.class'
+
 import { Router } from '@angular/router';
 @Component({
   selector: 'ngx-new-post',
@@ -18,7 +22,7 @@ export class NewPostComponent implements OnInit {
   User:User={}
   postSample:NewsPost={typePost:"PostSample",user:this.User}
   postAnnonce:NewsPost={typePost:"PostAnnonce",user:this.User}
-  constructor(private PostService:PostServiceService,private router: Router) { }
+  constructor(private PostService:PostServiceService,private router: Router,private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
 
@@ -57,5 +61,11 @@ export class NewPostComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([currentUrl]);
+  }
+  open() {
+    this.dialogService.open(MapRoutingComponent)
+      .onClose.subscribe(result => {
+          console.log(result)
+      });
   }
 }

@@ -25,7 +25,13 @@
                 <input name="to" [(ngModel)] = "postAnnonce.to"  type="text" nbInput fullWidth placeholder="To" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille">
               </div>
               <div class="col-md-12">
+                <button nbButton fullWidth shape="semi-round" status="info" (click)="open()">Itinerary</button>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" class="label">Date Start Tripe</label>
                   <input name="dateTripe" [(ngModel)] = "postAnnonce.dateTripe"  type="datetime-local" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille" nbInput placeholder="Pick Date">
+                </div>
               </div>
               <div class="col-md-12">
                 <textarea name="post" [(ngModel)] = "postAnnonce.post" class="input-full-width size-medium status-basic shape-round nb-transition margineTaille" nbInput placeholder="Message"></textarea>
