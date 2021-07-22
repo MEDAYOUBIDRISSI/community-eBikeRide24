@@ -7,10 +7,53 @@
              [title]="post.user.email"
              shape="semi-round">
     </nb-user>
-
   </nb-card-body>
     <nb-card-body>
-      {{post.post}}.
+      <div class="item text-heading">
+        <div>
+          <h5 class="text-heading">{{post.titlePost}}</h5>
+          <br>
+          <div>
+            {{(readMore) ? post.post : post.post | slice:0:20}} <span *ngIf="!readMore">...</span>
+            <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">[Read More]</a>
+          </div>
+          <br>
+          <nb-flip-card>
+            <nb-card-front>
+              <nb-card accent="info">
+                <nb-card-body>
+                  <figure>
+                    <blockquote class="blockquote">
+                      <p>Path for trip:</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                      From : <cite title="Source Title">{{post.from}}</cite>
+                    </figcaption>
+                    <figcaption class="blockquote-footer">
+                      To : <cite title="Source Title">{{post.to}}</cite>
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <blockquote class="blockquote">
+                      <p>Date trip:</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                      Date trip : <cite title="Source Title">{{post.dateTripe}}</cite>
+                    </figcaption>
+                  </figure>
+                </nb-card-body>
+              </nb-card>
+            </nb-card-front>
+            <nb-card-back>
+              <nb-card>
+                <nb-card-body>
+                  <button nbButton fullWidth shape="semi-round" status="info" (click)="open()">Show Path for trip on maps</button>
+                </nb-card-body>
+              </nb-card>
+            </nb-card-back>
+          </nb-flip-card>
+        </div>
+      </div>
       <br>
         <img *ngFor="let photo of post.Images" [src]="photo" class="rounded float-left" alt="...">
     </nb-card-body>

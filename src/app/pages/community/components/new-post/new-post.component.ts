@@ -18,6 +18,9 @@ export class NewPostComponent implements OnInit {
   inputItemFormControl = new FormControl();
   textareaItemFormControl = new FormControl();
   _id:any
+  urls=[];
+  imagesUpload:string[]=[]
+  imagesInsert:string[]=[]
 
   User:User={}
   postSample:NewsPost={typePost:"PostSample",user:this.User}
@@ -48,6 +51,11 @@ export class NewPostComponent implements OnInit {
   savePostAnnonce()
   {
     this.postAnnonce.user=this.User
+    this.postAnnonce.startTripeLat=localStorage.getItem("startTripeLat");
+    this.postAnnonce.startTripeLng=localStorage.getItem("startTripeLng");
+    this.postAnnonce.endTripeLat=localStorage.getItem("endTripeLat");
+    this.postAnnonce.endTripeLng=localStorage.getItem("endTripeLng");
+
     this.PostService.createPost(this.postAnnonce).subscribe( data =>{
       console.log(data);
       this.postAnnonce={typePost:"PostAnnonce",user:this.User}
@@ -68,4 +76,27 @@ export class NewPostComponent implements OnInit {
           console.log(result)
       });
   }
+
+  selectFiles(e)
+    {
+      this.urls=[]
+      if(e.target.files)
+      {
+        for(var i=0;i<File.length;i++)
+        {
+          var reader=new FileReader()
+          reader.readAsDataURL(e.target.files[i])
+          reader.onload=(events:any)=>{
+            this.urls.push(events.target.result)
+          }
+        }
+      }
+      console.log(this.urls)
+    }
+
+    delete_img(url:any)
+    {
+        const index: number = this.urls.indexOf(url);
+        this.urls.splice(index, 1);
+    }
 }

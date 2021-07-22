@@ -34,6 +34,10 @@ export class NewsPost{
   titlePost?:string;
   from?:string;
   to?:string;
+  startTripeLat?:any;
+  startTripeLng?:any;
+  endTripeLat?:any;
+  endTripeLng?:any;
   dateTripe?:string;
 }
 

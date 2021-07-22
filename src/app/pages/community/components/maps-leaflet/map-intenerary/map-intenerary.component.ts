@@ -19,49 +19,16 @@ export class MapInteneraryComponent implements OnInit {
     if (!navigator.geolocation) {
       console.log('location is not supported');
     }
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //   const coords = position.coords;
-    //   const latLong = [coords.latitude, coords.longitude];
-    //   console.log(
-    //     `lat: ${position.coords.latitude}, lon: ${position.coords.longitude}`
-    //   );
-    //   let mymap = L.map('map').setView(latLong, 13);
+      const Display_startTripeLat = localStorage.getItem("Display_startTripeLat");
+      const Display_startTripeLng = localStorage.getItem("Display_startTripeLng");
+      const Display_endTripeLat = localStorage.getItem("Display_endTripeLat");
+      const Display_endTripeLng = localStorage.getItem("Display_endTripeLng");
+       
+      console.log(localStorage.getItem("Display_startTripeLat"))
 
-    //   L.tileLayer(
-    //     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3VicmF0MDA3IiwiYSI6ImNrYjNyMjJxYjBibnIyem55d2NhcTdzM2IifQ.-NnMzrAAlykYciP4RP9zYQ',
-    //     {
-    //       attribution:
-    //         'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    //       maxZoom: 18,
-    //       id: 'mapbox/streets-v11',
-    //       tileSize: 512,
-    //       zoomOffset: -1,
-    //       accessToken: 'your.mapbox.access.token',
-    //     }
-    //   ).addTo(mymap);
-
-
-    //   let marker = L.marker(latLong,{draggable:true}).addTo(mymap);
-
-    //   marker.bindPopup('<b>Hi</b>').openPopup();
-
-    //   let popup = L.popup()
-    //     .setLatLng(latLong)
-    //     .setContent('I am here')
-    //     .openOn(mymap);
-
-    //     marker.on('dragend', function(event) {
-    //       var latlng = event.target.getLatLng();
-    //       console.log(latlng.lat, latlng.lng)
-    //     });
-    // });
-
-      //  const coords = position.coords;
-      const latLong = [31.58, -8.04];
-      const latLongEnd = [30.57, -8.09];
-      console.log(
-        `lat: ${31.58}, lon: ${-8.04}`
-      );
+      const latLong = [Display_startTripeLat, Display_startTripeLng];
+      const latLongEnd = [Display_endTripeLat, Display_endTripeLng];
+    
       let mymap = L.map('map').setView(latLong, 13);
 
       L.tileLayer(

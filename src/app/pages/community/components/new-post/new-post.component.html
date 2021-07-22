@@ -36,6 +36,33 @@
               <div class="col-md-12">
                 <textarea name="post" [(ngModel)] = "postAnnonce.post" class="input-full-width size-medium status-basic shape-round nb-transition margineTaille" nbInput placeholder="Message"></textarea>
               </div>
+              <div class="col-md-12">
+                <div class="card-body">
+                      <div class="form-row">
+                          <div class="col-md-4">
+                              <div class="position-relative form-group">
+                                  <label for="exampleLibelle" class=""></label>
+                                  <div class="form-row">
+                                      <div class="col-md-12">
+                                          <input type="file" (change)="selectFiles($event)" multiple id=”upload”>
+                                          <label class =”new-button” for=”upload”>Choiser les images</label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-md-8">
+                              <div class="scrollmenu">
+                                <div class="thumbnail" *ngFor="let url of urls">
+                                    <img [src]="url" alt="Avatar" class="avatar">
+                                    <span class="position-absolute translate-middle badge rounded-pill bg-danger" (click)="delete_img(url)">
+                                      <nb-icon icon="trash"></nb-icon>
+                                    </span>
+                                </div>
+                             </div>
+                          </div>
+                      </div>
+              </div>
+              </div>
               <div class="col-md-4">
                   <button (click)="savePostAnnonce()" class="status-success appearance-filled size-medium shape-rectangle nb-transition margineTaille ButtonSend" type="submit" nbButton status="success">Send</button>
               </div>

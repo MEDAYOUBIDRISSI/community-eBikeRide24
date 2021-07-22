@@ -1,6 +1,8 @@
 import { Component ,Input,OnInit,ChangeDetectionStrategy, ViewChild } from '@angular/core';
-
 import { PostServiceService,NewsPost ,User} from '../post-service.service';
+import { NbDialogService } from '@nebular/theme';
+import { MapInteneraryComponent } from '../../maps-leaflet/map-intenerary/map-intenerary.component';
+
 @Component({
   selector: 'ngx-news-posts',
   templateUrl: './news-posts.component.html',
@@ -14,6 +16,8 @@ export class NewsPostsComponent implements OnInit{
   @ViewChild('item') accordion;
   @ViewChild('item2') accordion2;
 
+  readMore = false;
+
   toggle() {
     this.accordion.toggle();
   }
@@ -21,7 +25,7 @@ export class NewsPostsComponent implements OnInit{
     this.accordion2.toggle();
   }
 
-  constructor(private PostService: PostServiceService) { }
+  constructor(private PostService: PostServiceService,private dialogService: NbDialogService) { }
   ngOnInit(): void {
     this._id = localStorage.getItem('jwt-IDUser')
   }
@@ -41,4 +45,19 @@ export class NewsPostsComponent implements OnInit{
     { name: 'Ben Sullivan', title: 'Carpenter and photographer' },
   ];
 
+  open() {
+    localStorage.setItem("Display_startTripeLat",this.post.startTripeLat);
+    localStorage.setItem("Display_startTripeLng",this.post.startTripeLng);
+    localStorage.setItem("Display_endTripeLat",this.post.endTripeLat);
+    localStorage.setItem("Display_endTripeLng",this.post.endTripeLng);
+    this.dialogService.open(MapInteneraryComponent)
+      .onClose.subscribe(result => {
+        localStorage.removeItem("Display_startTripeLat");
+        localStorage.removeItem("Display_startTripeLng");
+        localStorage.removeItem("Display_endTripeLat");
+        localStorage.removeItem("Display_endTripeLng");
+      });
+  }
+
+ 
 }
