@@ -77,26 +77,26 @@ export class NewPostComponent implements OnInit {
       });
   }
 
-  selectFiles(e)
-    {
-      this.urls=[]
-      if(e.target.files)
-      {
-        for(var i=0;i<File.length;i++)
-        {
-          var reader=new FileReader()
-          reader.readAsDataURL(e.target.files[i])
-          reader.onload=(events:any)=>{
-            this.urls.push(events.target.result)
-          }
-        }
-      }
-      console.log(this.urls)
-    }
+  // selectFiles(e)
+  //   {
+  //     this.urls=[]
+  //     if(e.target.files)
+  //     {
+  //       for(var i=0;i<File.length;i++)
+  //       {
+  //         var reader=new FileReader()
+  //         reader.readAsDataURL(e.target.files[i])
+  //         reader.onload=(events:any)=>{
+  //           this.urls.push(events.target.result)
+  //         }
+  //       }
+  //     }
+  //     console.log(this.urls)
+  //   }
 
-    delete_img(url:any)
-    {
-        const index: number = this.urls.indexOf(url);
-        this.urls.splice(index, 1);
-    }
+  //   delete_img(url:any)
+  //   {
+  //       const index: number = this.urls.indexOf(url);
+  //       this.urls.splice(index, 1);
+  //   }
 }
