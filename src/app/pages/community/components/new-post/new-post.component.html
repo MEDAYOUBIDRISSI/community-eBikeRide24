@@ -5,11 +5,12 @@
         <nb-card class="inline-form-card"> 
             <nb-card-body>
               <form>
-                <div class="form-group">
-                    <textarea name="post" [(ngModel)] = "postSample.post" class="input-full-width size-medium status-basic shape-round nb-transition" nbInput placeholder="Message"></textarea>
+                  <div class="form-group">
+                    <textarea name="post" [(ngModel)] = "postSample.post" class="input-full-width size-medium status-basic shape-round nb-transition" nbInput placeholder="New Publication"></textarea>
                   </div>
-                  <button (click)="savePostSample()" class="status-success appearance-filled size-medium shape-rectangle nb-transition ButtonSend" type="submit" nbButton status="success">Send</button>
+                  <button (click)="savePostSample()" class="status-success appearance-filled size-medium shape-rectangle nb-transition ButtonSend" type="submit" nbButton status="success">share</button>
               </form>
+
             </nb-card-body>
         </nb-card>
       </nb-tab>
@@ -34,12 +35,12 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <textarea name="post" [(ngModel)] = "postAnnonce.post" class="input-full-width size-medium status-basic shape-round nb-transition margineTaille" nbInput placeholder="Message"></textarea>
+                <textarea name="post" [(ngModel)] = "postAnnonce.post" class="input-full-width size-medium status-basic shape-round nb-transition margineTaille" nbInput placeholder="New Publication"></textarea>
               </div>
               <div class="col-md-12">
                 <div class="card-body">
                       <div class="form-row">
-                          <div class="col-md-4">
+                          <div class="col-md-5">
                               <div class="position-relative form-group">
                                   <label for="exampleLibelle" class=""></label>
                                   <div class="form-row">
@@ -64,7 +65,7 @@
               </div>
               </div>
               <div class="col-md-4">
-                  <button (click)="savePostAnnonce()" class="status-success appearance-filled size-medium shape-rectangle nb-transition margineTaille ButtonSend" type="submit" nbButton status="success">Send</button>
+                  <button (click)="savePostAnnonce()" class="status-success appearance-filled size-medium shape-rectangle nb-transition margineTaille ButtonSend" type="submit" nbButton status="success">Share</button>
               </div>
             </div>
           </nb-card-body>
