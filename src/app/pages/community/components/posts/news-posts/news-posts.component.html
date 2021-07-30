@@ -14,8 +14,8 @@
           <h5 class="text-heading">{{post.titlePost}}</h5>
           <br>
           <div>
-            {{(readMore) ? post.post : post.post | slice:0:20}} <span *ngIf="!readMore">...</span>
-            <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true">[Read More]</a>
+            {{(readMore) ? post.post : post.post | slice:0:20}} <span *ngIf="!readMore"><a *ngIf="post.post.length >= 20">...</a></span>
+            <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true"><a *ngIf="post.post.length >= 20">[Read More]</a></a>
           </div>
           <br>
           <nb-flip-card>
