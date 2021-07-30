@@ -23,6 +23,7 @@ export interface User
 }
 export class NewsPost{
 
+  _id?:string;
   typePost:string;
   post?:string;
   Images?:string[];
@@ -71,4 +72,10 @@ export class PostServiceService {
   createPost(post: NewsPost): Observable<any>{
     return this.httpClient.post(`${this.baseURL}/post/create`, post);
   }
+
+  JoinPost(_id: any, post: NewsPost): Observable<any>{
+    return this.httpClient.put(`${this.baseURL}/post/update?PostID=${_id}`, post);
+  }
+
+  
 } 

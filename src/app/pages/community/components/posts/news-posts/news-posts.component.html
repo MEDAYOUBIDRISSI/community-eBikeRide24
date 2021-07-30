@@ -59,7 +59,8 @@
     </nb-card-body>
     <nb-card-footer>
         <div class="btn-group" role="group" aria-label="Basic outlined example">
-          <button type="button" class="btn btn-outline-info">Join</button>
+          <button type="button" (click)="JoinPost()" class="btn btn-outline-info">Join</button>
+          <button type="button" (click)="LeavePost()" class="btn btn-outline-info">Leave</button>
           <button type="button" (click)="toggle2()" class="btn btn-outline-info">Joins</button>
           <button type="button" (click)="toggle()" class="btn btn-outline-info">
             <nb-icon icon="chatbubble-outline" status="info"></nb-icon>

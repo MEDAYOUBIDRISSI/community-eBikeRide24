@@ -28,12 +28,12 @@ export class NewsPostsComponent implements OnInit{
   constructor(private PostService: PostServiceService,private dialogService: NbDialogService) { }
   ngOnInit(): void {
     this._id = localStorage.getItem('jwt-IDUser')
+    this.getUserAuth()
   }
 
   getUserAuth(){
     this.PostService.getUserAuth(this._id).subscribe(data => {
       this.User = data.User;
-      console.log(this.User)
     });
   }
 
@@ -57,6 +57,23 @@ export class NewsPostsComponent implements OnInit{
         localStorage.removeItem("Display_endTripeLat");
         localStorage.removeItem("Display_endTripeLng");
       });
+  }
+
+  JoinPost()
+  {
+    this.post.affiliateDrivers.push(this.User)
+    console.log(this.post.affiliateDrivers)
+    // this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+    // }, error => console.log(error));
+  }
+
+  LeavePost()
+  {
+    const index: number = this.post.affiliateDrivers.indexOf(this.User);
+    this.post.affiliateDrivers.splice(index, 1);
+    console.log(this.post.affiliateDrivers)
+    // this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+    // }, error => console.log(error));
   }
 
  
