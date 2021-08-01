@@ -1,22 +1,40 @@
-import { Component ,Input,OnInit,ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { PostServiceService,NewsPost ,User} from '../post-service.service';
+import { Component ,Input,OnInit,OnDestroy,ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { PostServiceService,NewsPost ,User, comment} from '../post-service.service';
 import { NbDialogService } from '@nebular/theme';
 import { MapInteneraryComponent } from '../../maps-leaflet/map-intenerary/map-intenerary.component';
+import { Camera, SecurityCamerasData } from '../../../../../@core/data/security-cameras';
+import { map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { NbComponentSize, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-news-posts',
   templateUrl: './news-posts.component.html',
   styleUrls: ['./news-posts.component.scss']
 })
-export class NewsPostsComponent implements OnInit{
+export class NewsPostsComponent implements OnInit,OnDestroy{
 
   @Input() post: NewsPost
   _id:any
-  public User: User={}
+  User: User={}
+  comment: comment={}
+  Comment_v:string
+  PostUpdated:NewsPost
   @ViewChild('item') accordion;
   @ViewChild('item2') accordion2;
 
   readMore = false;
+  VerificationEtat:boolean=false;
+  // comment:{userComment:User,comment:string}
+
+  private destroy$ = new Subject<void>();
+
+  cameras: Camera[];
+  selectedCamera: Camera;
+  newImage: Camera;
+  isSingleView = false;
+  actionSize: NbComponentSize = 'medium';
+  ////////
 
   toggle() {
     this.accordion.toggle();
@@ -25,10 +43,32 @@ export class NewsPostsComponent implements OnInit{
     this.accordion2.toggle();
   }
 
-  constructor(private PostService: PostServiceService,private dialogService: NbDialogService) { }
+  constructor(private PostService: PostServiceService,
+    private dialogService: NbDialogService,
+    private securityCamerasService: SecurityCamerasData,) { }
   ngOnInit(): void {
     this._id = localStorage.getItem('jwt-IDUser')
     this.getUserAuth()
+    this.VerifiedEtat()
+    ////////////////////////
+    this.securityCamerasService.getCamerasData()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((cameras: Camera[]) => {
+        this.cameras = cameras;
+        //this.selectedCamera = this.cameras[0];
+      });
+          for(var i=0;i<4;i++)
+          {
+            if(this.post.Images[i])
+            {
+              this.cameras[i].source=this.post.Images[i]
+            }
+            else{
+              this.cameras.splice(i, 1);
+            }
+            
+          }
+          this.selectedCamera = this.cameras[0];
   }
 
   getUserAuth(){
@@ -62,19 +102,72 @@ export class NewsPostsComponent implements OnInit{
   JoinPost()
   {
     this.post.affiliateDrivers.push(this.User)
-    console.log(this.post.affiliateDrivers)
-    // this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
-    // }, error => console.log(error));
+    this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+      this.VerificationEtat=true
+    }, error => console.log(error));
   }
 
   LeavePost()
   {
     const index: number = this.post.affiliateDrivers.indexOf(this.User);
     this.post.affiliateDrivers.splice(index, 1);
-    console.log(this.post.affiliateDrivers)
-    // this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
-    // }, error => console.log(error));
+    this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+      this.VerificationEtat=false
+    }, error => console.log(error));
   }
 
+  VerifiedEtat()
+  {
+    for(var i=0;i<this.post.affiliateDrivers.length;i++)
+      {
+          if(this.post.affiliateDrivers[i]==this.User)
+          {
+            this.VerificationEtat=true
+          }
+      }
+  }
+
+  createComment()
+  {
+    this.comment.userComment=this.User
+    this.comment.fullName=this.User.nom +" "+this.User.prenom
+    this.comment.imgProfile=this.User.imgProfile
+    this.comment.comment=this.Comment_v
+    this.post.comments.push(this.comment)
+    
+    this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+      this.Comment_v=""
+      console.log(data)
+    }, error => console.log(error));
+  }
+
+  InterestPost()
+  {
+    this.post.reacteds.push(this.User)
+    this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+      this.VerificationEtat=true
+    }, error => console.log(error));
+  }
+  NotInterestPost()
+  {
+    const index: number = this.post.reacteds.indexOf(this.User);
+    this.post.reacteds.splice(index, 1);
+    this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
+      this.VerificationEtat=false
+    }, error => console.log(error));
+  }
+
+  //////////////////////////
+
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  selectCamera(camera: any) {
+    this.selectedCamera = camera;
+    this.isSingleView = true;
+  }
  
 }

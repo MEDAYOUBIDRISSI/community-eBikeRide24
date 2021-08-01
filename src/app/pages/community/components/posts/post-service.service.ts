@@ -29,7 +29,7 @@ export class NewsPost{
   Images?:string[];
   user:User;
   usersTag?:User[];
-  comments?:{userComment:User,comment:string}[];
+  comments?:comment[];
   reacteds?:User[];
   affiliateDrivers?:User[];
   titlePost?:string;
@@ -41,6 +41,13 @@ export class NewsPost{
   endTripeLng?:any;
   dateTripe?:string;
 }
+export class comment{
+  userComment?:User;
+  fullName?:string;
+  imgProfile?:string;
+  comment?:string
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +65,7 @@ export class PostServiceService {
       map(news => news.splice(startIndex, pageSize)),
       delay(1500),
     );
-    console.log(listNews)
+    // console.log(listNews)
     return listNews
   }
 
@@ -74,7 +81,7 @@ export class PostServiceService {
   }
 
   JoinPost(_id: any, post: NewsPost): Observable<any>{
-    return this.httpClient.put(`${this.baseURL}/post/update?PostID=${_id}`, post);
+    return this.httpClient.put(`${this.baseURL}/post/update?postID=${_id}`, post);
   }
 
   

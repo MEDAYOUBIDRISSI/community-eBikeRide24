@@ -30,6 +30,8 @@ export class SecurityCamerasComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((cameras: Camera[]) => {
         this.cameras = cameras;
+        console.log("test")
+        console.log(this.cameras)
         this.selectedCamera = this.cameras[0];
       });
 
