@@ -55,20 +55,22 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
       .pipe(takeUntil(this.destroy$))
       .subscribe((cameras: Camera[]) => {
         this.cameras = cameras;
-        //this.selectedCamera = this.cameras[0];
       });
           for(var i=0;i<4;i++)
           {
             if(this.post.Images[i])
             {
               this.cameras[i].source=this.post.Images[i]
+                if(i==0)
+                {
+                  this.selectedCamera = this.cameras[i];
+                }
             }
             else{
               this.cameras.splice(i, 1);
             }
             
           }
-          this.selectedCamera = this.cameras[0];
   }
 
   getUserAuth(){

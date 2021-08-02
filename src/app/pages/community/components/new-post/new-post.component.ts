@@ -42,6 +42,7 @@ export class NewPostComponent implements OnInit {
   savePostSample()
   {
     this.postSample.user=this.User
+    this.postSample.Images=this.urls
     this.PostService.createPost(this.postSample).subscribe( data =>{
       this.postSample={typePost:"PostSample",user:this.User}
       window.location.reload(); 
@@ -51,6 +52,7 @@ export class NewPostComponent implements OnInit {
   savePostAnnonce()
   {
     this.postAnnonce.user=this.User
+    this.postAnnonce.Images=this.urls
     this.postAnnonce.startTripeLat=localStorage.getItem("startTripeLat");
     this.postAnnonce.startTripeLng=localStorage.getItem("startTripeLng");
     this.postAnnonce.endTripeLat=localStorage.getItem("endTripeLat");

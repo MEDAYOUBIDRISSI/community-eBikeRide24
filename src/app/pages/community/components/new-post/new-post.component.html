@@ -6,7 +6,34 @@
             <nb-card-body>
               <form>
                   <div class="form-group">
-                    <textarea name="post" [(ngModel)] = "postSample.post" class="input-full-width size-medium status-basic shape-round nb-transition" nbInput placeholder="New Publication"></textarea>
+                    <textarea name="post" rows="5" [(ngModel)] = "postSample.post" class="input-full-width size-medium status-basic shape-round nb-transition" nbInput placeholder="New Publication"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <div class="card-body">
+                          <div class="form-row">
+                              <div class="col-md-5">
+                                  <div class="position-relative form-group">
+                                      <label for="exampleLibelle" class=""></label>
+                                      <div class="form-row">
+                                          <div class="col-md-12">
+                                              <input type="file" (change)="selectFiles($event)" multiple id=”upload”>
+                                              <label class =”new-button” for=”upload”>Choiser les images</label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-8">
+                                  <div class="scrollmenu">
+                                    <div class="thumbnail" *ngFor="let url of urls">
+                                        <img [src]="url" alt="Avatar" class="avatar">
+                                        <span class="position-absolute translate-middle badge rounded-pill bg-danger" (click)="delete_img(url)">
+                                          <nb-icon icon="trash"></nb-icon>
+                                        </span>
+                                    </div>
+                                 </div>
+                              </div>
+                          </div>
+                    </div>
                   </div>
                   <button (click)="savePostSample()" class="status-success appearance-filled size-medium shape-rectangle nb-transition ButtonSend" type="submit" nbButton status="success">share</button>
               </form>
@@ -37,7 +64,7 @@
               <div class="col-md-12">
                 <textarea name="post" [(ngModel)] = "postAnnonce.post" class="input-full-width size-medium status-basic shape-round nb-transition margineTaille" nbInput placeholder="New Publication"></textarea>
               </div>
-              <div class="col-md-12">
+              <!-- <div class="col-md-12">
                 <div class="card-body">
                       <div class="form-row">
                           <div class="col-md-5">
@@ -62,8 +89,8 @@
                              </div>
                           </div>
                       </div>
-              </div>
-              </div>
+                </div>
+              </div> -->
               <div class="col-md-4">
                   <button (click)="savePostAnnonce()" class="status-success appearance-filled size-medium shape-rectangle nb-transition margineTaille ButtonSend" type="submit" nbButton status="success">Share</button>
               </div>

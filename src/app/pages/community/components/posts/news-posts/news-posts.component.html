@@ -1,4 +1,4 @@
-<nb-card accent="info" class="cardWidth_v1" *ngIf="post.typePost=='PostAnnonce'">
+<nb-card accent="info" *ngIf="post.typePost=='PostAnnonce'">
     <nb-card-body>
     <nb-user size="large"
             [picture]="post.user.imgProfile"
@@ -13,7 +13,7 @@
           <h5 class="text-heading">{{post.titlePost}}</h5>
           <br>
           <div>
-            {{(readMore) ? post.post : post.post | slice:0:20}} <span *ngIf="!readMore"><a *ngIf="post.post.length >= 20">...</a></span>
+            {{(readMore) ? post.post : post.post | slice:0:100}} <span *ngIf="!readMore"><a *ngIf="post.post.length >= 20">...</a></span>
             <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true"><a *ngIf="post.post.length >= 20">[Read More]</a></a>
           </div>
           <br>
@@ -40,44 +40,6 @@
                       Date trip : <cite title="Source Title">{{post.dateTripe}}</cite>
                     </figcaption>
                   </figure>
-                  <!-- <nb-card size="medium">
-                    <nb-card-header>
-                      Captures
-                  
-                      <button class="single-view-button"
-                              nbButton
-                              size="small"
-                              [appearance]="isSingleView ? 'filled' : 'outline'"
-                              (click)="isSingleView = true">
-                        <i class="nb-square"></i>
-                      </button>
-                      <button class="grid-view-button"
-                              nbButton
-                              size="small"
-                              [appearance]="isSingleView ? 'outline' : 'filled'"
-                              (click)="isSingleView = false">
-                        <nb-icon icon="grid" pack="eva"></nb-icon>
-                      </button>
-                    </nb-card-header>
-                  
-                    <div class="grid-container">
-                  
-                      <div class="single-view" *ngIf="isSingleView">
-                        <div class="camera" [style.background-image]="'url(' + selectedCamera.source + ')'">
-                          <span class="camera-name">{{ selectedCamera.title }}</span>
-                        </div>
-                      </div>
-                  
-                      <div class="grid-view" *ngIf="!isSingleView">
-                        <div class="camera"
-                             *ngFor="let camera of cameras"
-                             [style.background-image]="'url(' + camera.source + ')'"
-                             (click)="selectCamera(camera)">
-                          <span class="camera-name">{{ camera.title }}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </nb-card> -->
                 </nb-card-body>
               </nb-card>
             </nb-card-front>
@@ -93,12 +55,12 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-          <button type="button" (click)="JoinPost()" class="btn btn-outline-info">Join</button>
-          <button type="button" (click)="LeavePost()" class="btn btn-outline-info">Leave</button>
-          <button type="button" (click)="toggle2()" class="btn btn-outline-info">Joins</button>
-          <button type="button" (click)="toggle()" class="btn btn-outline-info">Comments</button>
-        </div>
+      <div class="btn-group" role="group" aria-label="Basic outlined example" >
+        <button type="button" (click)="JoinPost()" class="btn btn-outline-info">Join</button>
+        <button type="button" (click)="LeavePost()" class="btn btn-outline-info">Leave</button>
+        <button type="button" (click)="toggle2()" class="btn btn-outline-info">Joins</button>
+        <button type="button" (click)="toggle()" class="btn btn-outline-info">Comments</button>
+      </div>
       <nb-accordion>
           <nb-accordion-item #item>
             <nb-accordion-item-body>
@@ -110,8 +72,8 @@
                   <nb-list>
                     <nb-list-item *ngFor="let comment_display of post.comments">
                       <nb-user [name]="comment_display.fullName" 
-                               [title]="comment_display.comment"
-                               [picture]="comment_display.imgProfile">
+                              [title]="comment_display.comment"
+                              [picture]="comment_display.imgProfile">
                       </nb-user>
                     </nb-list-item>
                   </nb-list>
@@ -128,100 +90,108 @@
                   </nb-user>
               </nb-accordion-item-body>
             </nb-accordion-item>
-        </nb-accordion>
-  </nb-card-footer>
-  </nb-card>
+      </nb-accordion>
+    </nb-card-footer>
+</nb-card>
   
-  <nb-card accent="danger" class="cardWidth" *ngIf="post.typePost=='PostSample'">
-    <nb-card-body>
-
+<nb-card accent="danger" *ngIf="post.typePost=='PostSample'">
+  <nb-card-body>
     <nb-user size="large"
             [picture]="post.user.imgProfile"
-             [name]="post.user.nom"
-             [title]="post.user.email"
-             shape="semi-round">
+            [name]="post.user.nom"
+            [title]="post.user.email"
+            shape="semi-round">
     </nb-user>
-
   </nb-card-body>
-    <nb-card-body>
-        {{post.post}}.
-        <br>
-        <nb-card size="medium">
-          <nb-card-header>
-            Captures
-            <button class="single-view-button"
-                    nbButton
-                    size="small"
-                    [appearance]="isSingleView ? 'filled' : 'outline'"
-                    (click)="isSingleView = true">
-              <i class="nb-square"></i>
-            </button>
-            <button class="grid-view-button"
-                    nbButton
-                    size="small"
-                    [appearance]="isSingleView ? 'outline' : 'filled'"
-                    (click)="isSingleView = false">
-              <nb-icon icon="grid" pack="eva"></nb-icon>
-            </button>
-          </nb-card-header>
-        
-          <div class="grid-container">
-        
-            <div class="single-view" *ngIf="isSingleView">
-              <div class="camera" [style.background-image]="'url(' + selectedCamera.source + ')'">
-                <span class="camera-name">{{ selectedCamera.title }}</span>
-              </div>
-            </div>
-        
-            <div class="grid-view" *ngIf="!isSingleView">
-              <div class="camera"
-                   *ngFor="let camera of cameras"
-                   [style.background-image]="'url(' + camera.source + ')'"
-                   (click)="selectCamera(camera)">
-                <span class="camera-name">{{ camera.title }}</span>
-              </div>
-            </div>
+  <nb-card-body>
+    <div>
+      {{(readMore) ? post.post : post.post | slice:0:100}} <span *ngIf="!readMore"><a *ngIf="post.post.length >= 100">...</a></span>
+      <a href="javascript:;" *ngIf="!readMore" (click)="readMore=true"><a *ngIf="post.post.length >= 100">[Read More]</a></a>
+    </div>
+    <br>
+    <div class="responsive" *ngFor="let camera of post.Images">
+      <div class="gallery">
+        <a target="_blank" [href]="camera">
+          <img [src]="camera" alt="Cinque Terre" width="600" height="400">
+        </a>
+      </div>
+    </div>
+    <!-- <nb-card size="medium">
+      <nb-card-header>
+        Captures
+        <button class="single-view-button"
+                nbButton
+                size="small"
+                [appearance]="isSingleView ? 'filled' : 'outline'"
+                (click)="isSingleView = true">
+          <i class="nb-square"></i>
+        </button>
+        <button class="grid-view-button"
+                nbButton
+                size="small"
+                [appearance]="isSingleView ? 'outline' : 'filled'"
+                (click)="isSingleView = false">
+          <nb-icon icon="grid" pack="eva"></nb-icon>
+        </button>
+      </nb-card-header>
+    
+      <div class="grid-container">
+    
+        <div class="single-view" *ngIf="isSingleView">
+          <div class="camera" [style.background-image]="'url(' + selectedCamera.source + ')'">
+            <span class="camera-name">{{ selectedCamera.title }}</span>
           </div>
-        </nb-card>
-    </nb-card-body>
-    <nb-card-footer>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-danger" (click)="InterestPost()">
-                Like
-            </button>
-            <button type="button" (click)="NotInterestPost()" class="btn btn-outline-danger">not interested</button>
-            <button type="button" (click)="toggle2()" class="btn btn-outline-danger">interested</button>
-            <button type="button" (click)="toggle()" class="btn btn-outline-danger">Comments</button>
+        </div>
+    
+        <div class="grid-view" *ngIf="!isSingleView">
+          <div class="camera"
+                *ngFor="let camera of cameras"
+                [style.background-image]="'url(' + camera.source + ')'"
+                (click)="selectCamera(camera)">
+            <span class="camera-name">{{ camera.title }}</span>
           </div>
-        <nb-accordion>
-            <nb-accordion-item #item>
-              <nb-accordion-item-body>
-                <nb-card size="small">
-                  <div class="input-group mb-3">
-                    <input type="text" name="comment" [(ngModel)] = "Comment_v" class="form-control" placeholder="Your Comment" aria-label="Your Comment" aria-describedby="basic-addon2">
-                    <button class="input-group-text" id="basic-addon2" (click)="createComment()">Send</button>
-                  </div>
-                  <nb-list>
-                    <nb-list-item *ngFor="let comment_display of post.comments">
-                      <nb-user [name]="comment_display.fullName" 
-                               [title]="comment_display.comment"
-                               [picture]="comment_display.imgProfile">
-                      </nb-user>
-                    </nb-list-item>
-                  </nb-list>
-                </nb-card>
-              </nb-accordion-item-body>
+        </div>
+      </div>
+    </nb-card> -->
+  </nb-card-body>
+  <nb-card-footer>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <button type="button" class="btn btn-outline-danger" (click)="InterestPost()">
+              Like
+          </button>
+          <button type="button" (click)="NotInterestPost()" class="btn btn-outline-danger">not interested</button>
+          <button type="button" (click)="toggle2()" class="btn btn-outline-danger">interested</button>
+          <button type="button" (click)="toggle()" class="btn btn-outline-danger">Comments</button>
+        </div>
+      <nb-accordion>
+          <nb-accordion-item #item>
+            <nb-accordion-item-body>
+              <nb-card size="small">
+                <div class="input-group mb-3">
+                  <input type="text" name="comment" [(ngModel)] = "Comment_v" class="form-control" placeholder="Your Comment" aria-label="Your Comment" aria-describedby="basic-addon2">
+                  <button class="input-group-text" id="basic-addon2" (click)="createComment()">Send</button>
+                </div>
+                <nb-list>
+                  <nb-list-item *ngFor="let comment_display of post.comments">
+                    <nb-user [name]="comment_display.fullName" 
+                              [title]="comment_display.comment"
+                              [picture]="comment_display.imgProfile">
+                    </nb-user>
+                  </nb-list-item>
+                </nb-list>
+              </nb-card>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+          <nb-accordion-item #item2>
+            <nb-accordion-item-body>
+              <nb-user *ngFor="let user of post.reacteds" 
+                  [picture]="user.imgProfile"
+                  size="large"
+                  [name]="user.nom"
+                  [title]="user.email">
+              </nb-user>
+            </nb-accordion-item-body>
             </nb-accordion-item>
-            <nb-accordion-item #item2>
-              <nb-accordion-item-body>
-                <nb-user *ngFor="let user of post.reacteds" 
-                    [picture]="user.imgProfile"
-                    size="large"
-                    [name]="user.nom"
-                    [title]="user.email">
-                </nb-user>
-              </nb-accordion-item-body>
-              </nb-accordion-item>
-          </nb-accordion>
-    </nb-card-footer>
-  </nb-card>
+        </nb-accordion>
+  </nb-card-footer>
+</nb-card>
