@@ -111,11 +111,13 @@
     <br>
     <div class="responsive" *ngFor="let camera of post.Images">
       <div class="gallery">
-        <a target="_blank" [href]="camera">
-          <img [src]="camera" alt="Cinque Terre" width="600" height="400">
+        <a (click)="imgView(camera)">
+          <img [src]="camera" alt="Cinque Terre" class="rounded">
         </a>
       </div>
     </div>
+
+    
     <!-- <nb-card size="medium">
       <nb-card-header>
         Captures

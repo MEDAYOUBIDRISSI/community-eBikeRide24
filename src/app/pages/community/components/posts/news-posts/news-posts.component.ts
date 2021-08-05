@@ -5,6 +5,7 @@ import { MapInteneraryComponent } from '../../maps-leaflet/map-intenerary/map-in
 import { Camera, SecurityCamerasData } from '../../../../../@core/data/security-cameras';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NewsImgComponent } from '../news-img/news-img.component';
 import { NbComponentSize, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
 
 @Component({
@@ -45,7 +46,7 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
 
   constructor(private PostService: PostServiceService,
     private dialogService: NbDialogService,
-    private securityCamerasService: SecurityCamerasData,) { }
+    private securityCamerasService: SecurityCamerasData) { }
   ngOnInit(): void {
     this._id = localStorage.getItem('jwt-IDUser')
     this.getUserAuth()
@@ -157,6 +158,15 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
     this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
       this.VerificationEtat=false
     }, error => console.log(error));
+  }
+
+  imgView(img:any)
+  {
+    localStorage.setItem("img_dialog",img);
+    this.dialogService.open(NewsImgComponent)
+      .onClose.subscribe(result => {
+          console.log(result)
+      });
   }
 
   //////////////////////////
