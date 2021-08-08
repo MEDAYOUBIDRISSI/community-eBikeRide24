@@ -60,3 +60,24 @@ left: 0;
 font-size: 15px;
 color: rgb(153,153,153);
 }
+
+
+
+
+ngx-dropzone,
+.custom-dropzone {
+  margin: 0px;
+}
+
+.custom-dropzone {
+	height: 150px;
+	background: #DCDCDC;
+	color: #fff;
+	// border: 5px dashed #B0C4DE;
+	border-radius: 5px;
+	font-size: 8px;
+}
+
+.custom-dropzone.ngx-dz-hovered {
+  border: 0px solid #B0C4DE;
+}

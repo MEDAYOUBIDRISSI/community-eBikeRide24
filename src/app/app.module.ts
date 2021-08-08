@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 import { IndexComponent } from './pages/community/index/index.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -47,6 +47,7 @@ import { RegisterComponent } from './auth/register/register.component';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    NgxDropzoneModule
   ],
   bootstrap: [AppComponent],
 })

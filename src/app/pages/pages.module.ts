@@ -29,6 +29,7 @@ import { NewsPostsPlaceholderComponent } from './community/components/posts/news
 import { MapRoutingComponent } from './community/components/maps-leaflet/map-routing/map-routing.component';
 import { MapInteneraryComponent } from './community/components/maps-leaflet/map-intenerary/map-intenerary.component';
 import { NewsImgComponent } from './community/components/posts/news-img/news-img.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { NewsImgComponent } from './community/components/posts/news-img/news-img
     FormsModule,
     ReactiveFormsModule,
     NbDatepickerModule,
+    NgxDropzoneModule
   ],
   declarations: [
     PagesComponent,
