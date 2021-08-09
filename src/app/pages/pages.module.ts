@@ -30,6 +30,7 @@ import { MapRoutingComponent } from './community/components/maps-leaflet/map-rou
 import { MapInteneraryComponent } from './community/components/maps-leaflet/map-intenerary/map-intenerary.component';
 import { NewsImgComponent } from './community/components/posts/news-img/news-img.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     FormsModule,
     ReactiveFormsModule,
     NbDatepickerModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgxGalleryModule
   ],
   declarations: [
     PagesComponent,

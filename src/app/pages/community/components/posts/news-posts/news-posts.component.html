@@ -110,13 +110,15 @@
     </div>
     <br>
     <div class="responsive" *ngFor="let camera of post.Images">
-      <div class="gallery">
+      <!-- <div class="gallery">
         <a (click)="imgView(camera)">
           <img [src]="camera" alt="Cinque Terre" class="rounded">
         </a>
-      </div>
+      </div> -->
     </div>
-
+    <div class="gallery-wrapper">
+      <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+    </div>
     
     <!-- <nb-card size="medium">
       <nb-card-header>

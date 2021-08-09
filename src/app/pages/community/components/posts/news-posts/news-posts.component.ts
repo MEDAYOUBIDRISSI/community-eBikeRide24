@@ -1,5 +1,5 @@
 import { Component ,Input,OnInit,OnDestroy,ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { PostServiceService,NewsPost ,User, comment} from '../post-service.service';
+import { PostServiceService,NewsPost ,User, comment,Image} from '../post-service.service';
 import { NbDialogService } from '@nebular/theme';
 import { MapInteneraryComponent } from '../../maps-leaflet/map-intenerary/map-intenerary.component';
 import { Camera, SecurityCamerasData } from '../../../../../@core/data/security-cameras';
@@ -7,6 +7,10 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NewsImgComponent } from '../news-img/news-img.component';
 import { NbComponentSize, NbMediaBreakpointsService, NbThemeService } from '@nebular/theme';
+
+import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'ngx-news-posts',
@@ -26,7 +30,8 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
 
   readMore = false;
   VerificationEtat:boolean=false;
-  // comment:{userComment:User,comment:string}
+  img:any={}
+  ImageList=[]
 
   private destroy$ = new Subject<void>();
 
@@ -36,6 +41,9 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
   isSingleView = false;
   actionSize: NbComponentSize = 'medium';
   ////////
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
+
 
   toggle() {
     this.accordion.toggle();
@@ -52,32 +60,57 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
     this.getUserAuth()
     this.VerifiedEtat()
     ////////////////////////
-    this.securityCamerasService.getCamerasData()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((cameras: Camera[]) => {
-        this.cameras = cameras;
-      });
-          for(var i=0;i<4;i++)
-          {
-            if(this.post.Images[i])
-            {
-              this.cameras[i].source=this.post.Images[i]
-                if(i==0)
-                {
-                  this.selectedCamera = this.cameras[i];
-                }
-            }
-            else{
-              this.cameras.splice(i, 1);
-            }
-            
-          }
+    this.galleryOptions = [
+      {
+        width: '600px',
+        height: '400px',
+        thumbnailsColumns: 4,
+        arrowPrevIcon: 'fa fa-chevron-left',
+        arrowNextIcon: 'fa fa-chevron-right',
+        imageAnimation: NgxGalleryAnimation.Slide
+      },
+      // max-width 800
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '600px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20
+      },
+      // max-width 400
+      {
+        breakpoint: 400,
+        preview: false
+      }
+    ];
+
+
+    this.chargeImage()
+
+    
+
   }
 
   getUserAuth(){
     this.PostService.getUserAuth(this._id).subscribe(data => {
       this.User = data.User;
     });
+  }
+
+  chargeImage()
+  {
+    for (var i = 0; i < this.post.Images.length; i++)
+    {
+      this.img.big=this.post.Images[i]
+      this.img.medium=this.post.Images[i]
+      this.img.small=this.post.Images[i]
+      this.ImageList.push(this.img)
+      this.img={}
+    }
+    this.galleryImages=this.ImageList
+    console.log(this.galleryImages)
   }
 
   users: { name: string, title: string }[] = [

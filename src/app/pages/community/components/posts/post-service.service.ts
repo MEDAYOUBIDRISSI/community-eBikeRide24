@@ -48,6 +48,12 @@ export class comment{
   comment?:string
 }
 
+export class Image{
+  small?:string;
+  big?:string;
+  medium?:string
+}
+
 
 @Injectable({
   providedIn: 'root'

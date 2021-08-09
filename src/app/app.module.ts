@@ -26,6 +26,7 @@ import { IndexComponent } from './pages/community/index/index.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import {NgxGalleryModule} from '@kolkov/ngx-gallery';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
@@ -47,7 +48,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgxGalleryModule
   ],
   bootstrap: [AppComponent],
 })

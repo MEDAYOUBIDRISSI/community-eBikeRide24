@@ -42,7 +42,7 @@ export class NewPostComponent implements OnInit {
   savePostSample()
   {
     this.postSample.user=this.User
-    this.postSample.Images=this.urls
+    // this.postSample.Images=this.urls
     this.PostService.createPost(this.postSample).subscribe( data =>{
       this.postSample={typePost:"PostSample",user:this.User}
       window.location.reload(); 
@@ -109,10 +109,57 @@ export class NewPostComponent implements OnInit {
 	onSelect(event) {
 		console.log(event);
 		this.files.push(...event.addedFiles);
+    
+    const formData = new FormData();  
+      var a:any;  
+      let b:any[]=[];
+      if(b.length!=0){
+        b=[];
+      }
+      for (var i = 0; i < this.files.length; i++) {   
+      formData.append("file[]", this.files[i]);  
+      let reader = new FileReader();
+      reader.readAsDataURL(this.files[i]);
+      // reader.onload = function () {
+      //   a=(reader.result.toString().split("base64,", 3))[1];      
+      //   b.push(a);
+      // }
+      reader.onload=(events:any)=>{
+        b.push(events.target.result)
+      }
+
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+      this.postSample.Images=b
+      console.log(this.postSample.Images);
 	}
 
 	onRemove(event) {
 		console.log(event);
 		this.files.splice(this.files.indexOf(event), 1);
+    
+    const formData = new FormData();  
+      var a:any;  
+      let b:any[]=[];
+      if(b.length!=0){
+        b=[];
+      }
+    for (var i = 0; i < this.files.length; i++) {   
+      formData.append("file[]", this.files[i]);  
+      let reader = new FileReader();
+      reader.readAsDataURL(this.files[i]);
+      reader.onload = function () {
+        a=(reader.result.toString().split("base64,", 3))[1];      
+        b.push(a);
+        
+      };
+      reader.onerror = function (error) {
+        console.log('Error: ', error);
+      };
+    }
+      console.log(this.postSample.Images);
+      this.postSample.Images=b
 	}
 }
