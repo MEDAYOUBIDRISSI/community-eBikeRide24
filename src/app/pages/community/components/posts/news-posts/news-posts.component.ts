@@ -170,9 +170,10 @@ export class NewsPostsComponent implements OnInit,OnDestroy{
     this.comment.imgProfile=this.User.imgProfile
     this.comment.comment=this.Comment_v
     this.post.comments.push(this.comment)
-    
+    this.comment={}
+    this.Comment_v=""
     this.PostService.JoinPost(this.post._id, this.post).subscribe( data =>{
-      this.Comment_v=""
+      this.ngOnInit()
       console.log(data)
     }, error => console.log(error));
   }

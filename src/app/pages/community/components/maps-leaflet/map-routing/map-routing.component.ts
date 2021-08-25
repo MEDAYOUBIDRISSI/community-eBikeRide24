@@ -11,7 +11,7 @@ declare const L: any;
 export class MapRoutingComponent implements OnInit {
 
   constructor(private dialogRef: NbDialogRef<MapRoutingComponent>) {
-  }
+  } 
   ourTripe:Trip
   lat_Start:any
   long_Start:any

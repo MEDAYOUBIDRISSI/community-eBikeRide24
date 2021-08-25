@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card style="width: 700px;">
   <nb-card-body>
     <nb-tabset>
       <nb-tab tabTitle="Post" tabIcon="person-outline" responsive>
@@ -11,32 +11,11 @@
                   <div class="form-group">
                     <div class="card-body">
                           <div class="form-row">
-                              <!-- <div class="col-md-5">
-                                  <div class="position-relative form-group">
-                                      <label for="exampleLibelle" class=""></label>
-                                      <div class="form-row">
-                                          <div class="col-md-12">
-                                              <input type="file" (change)="selectFiles($event)" multiple id=”upload”>
-                                              <label class =”new-button” for=”upload”>Choiser les images</label>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-8">
-                                  <div class="scrollmenu">
-                                    <div class="thumbnail" *ngFor="let url of urls">
-                                        <img [src]="url" alt="Avatar" class="avatar">
-                                        <span class="position-absolute translate-middle badge rounded-pill bg-danger" (click)="delete_img(url)">
-                                          <nb-icon icon="trash"></nb-icon>
-                                        </span>
-                                    </div>
-                                 </div>
-                              </div> -->
                               <div class="col-md-12">
                                 <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
                                   <ngx-dropzone-label>
                                     <div>
-                                      <h2>My custom dropzone</h2>
+                                      <h2>Drop Images</h2>
                                     </div>
                                   </ngx-dropzone-label>
                                   <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
@@ -55,7 +34,7 @@
       </nb-tab>
       <nb-tab tabTitle="Annonce" tabIcon="bell-outline" responsive>
         <nb-card>
-          <nb-card-body class="example-items-col">
+          <nb-card-body>
             <input name="titlePost" [(ngModel)] = "postAnnonce.titlePost"  type="text" nbInput fullWidth placeholder="Titre" class="input-full-width size-medium status-basic shape-rectangle nb-transition margineTaille">
             <div class="full-name-inputs row">
               <div class="col-md-6">

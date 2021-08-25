@@ -4,8 +4,9 @@ import { PostServiceService,NewsPost ,User} from '../posts/post-service.service'
 import { NbDialogService } from '@nebular/theme';
 import { MapRoutingComponent } from '../maps-leaflet/map-routing/map-routing.component';
 import { Trip } from '../maps-leaflet/map-routing/trip.class'
-
+import { NbDialogRef } from '@nebular/theme';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'ngx-new-post',
   templateUrl: './new-post.component.html',
@@ -25,7 +26,8 @@ export class NewPostComponent implements OnInit {
   User:User={}
   postSample:NewsPost={typePost:"PostSample",user:this.User}
   postAnnonce:NewsPost={typePost:"PostAnnonce",user:this.User}
-  constructor(private PostService:PostServiceService,private router: Router,private dialogService: NbDialogService) { }
+  constructor(private PostService:PostServiceService,private router: Router,private dialogService: NbDialogService,
+    private dialogRef: NbDialogRef<MapRoutingComponent>) { }
 
   ngOnInit(): void {
 
@@ -45,7 +47,8 @@ export class NewPostComponent implements OnInit {
     // this.postSample.Images=this.urls
     this.PostService.createPost(this.postSample).subscribe( data =>{
       this.postSample={typePost:"PostSample",user:this.User}
-      window.location.reload(); 
+      this.close()
+      //window.location.reload(); 
     },
     error => console.log(error));
   }
@@ -61,7 +64,8 @@ export class NewPostComponent implements OnInit {
     this.PostService.createPost(this.postAnnonce).subscribe( data =>{
       console.log(data);
       this.postAnnonce={typePost:"PostAnnonce",user:this.User}
-      this.reloadComponent() 
+      //this.reloadComponent() 
+      this.close()
     },
     error => console.log(error));
   }
@@ -77,6 +81,10 @@ export class NewPostComponent implements OnInit {
       .onClose.subscribe(result => {
           console.log(result)
       });
+  }
+
+  close() {
+    this.dialogRef.close("goode_Jobe");
   }
 
   selectFiles(e)
