@@ -31,6 +31,8 @@ import { MapInteneraryComponent } from './community/components/maps-leaflet/map-
 import { NewsImgComponent } from './community/components/posts/news-img/news-img.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
+import { TopSellerComponent } from './community/components/top-seller/top-seller.component';
+import { ProductForYouComponent } from './community/components/product-for-you/product-for-you.component';
 
 @NgModule({
   imports: [
@@ -69,7 +71,9 @@ import {NgxGalleryModule} from '@kolkov/ngx-gallery';
     NewsPostsPlaceholderComponent,
     MapRoutingComponent,
     MapInteneraryComponent,
-    NewsImgComponent
+    NewsImgComponent,
+    TopSellerComponent,
+    ProductForYouComponent
   ],
 })
 export class PagesModule {

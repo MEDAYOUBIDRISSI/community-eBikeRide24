@@ -1,0 +1,14 @@
+<nb-card class="list-card sticky">
+    <nb-card-header>Top Product</nb-card-header>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item *ngFor="let product of Products">
+            <nb-user size="large"
+                            [picture]="product.Product.Image[0]"
+                            [name]="product.Product.libelle"
+                            [title]="'Prix: ' +product.Product.prixVent +' '+'DH'">
+                  </nb-user>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+</nb-card>
